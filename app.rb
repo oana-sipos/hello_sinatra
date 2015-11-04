@@ -1,5 +1,6 @@
 # app.rb
 # run with 'ruby app.rb'
+# include Hello::Delegator
 
 require './hello'
 

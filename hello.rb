@@ -1,6 +1,6 @@
 require 'rack'
 
-module Hello
+module HelloSinatra
   class Base
     def initialize
       @routes = {}
@@ -43,7 +43,7 @@ module Hello
           results
         end
       else
-        [404, {}, ["4 oh 4, no route for #{verb} #{requested_path}!"]]
+        [404, {}, ["4 ohhhhh 4, no route for #{verb} #{requested_path}!"]]
       end
     end
 
@@ -65,7 +65,7 @@ module Hello
   Application = Base.new
 end
 
-module Hello
+module HelloSinatra
   module Delegator
     def self.delegate(*methods, to:)
       Array(methods).each do |method_name|
@@ -81,14 +81,10 @@ module Hello
   end
 end
 
-include Hello::Delegator
+include HelloSinatra::Delegator
 
 get "/hello" do
   "Hello works!"
 end
 
-post "/" do
-  request.body.read
-end
-
-Rack::Handler::WEBrick.run Hello::Application, Port: 9292
+Rack::Handler::WEBrick.run HelloSinatra::Application, Port: 9292
